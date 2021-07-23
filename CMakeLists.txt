@@ -9,7 +9,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_options(/W4 /O2 /WX /fsanitize=address)
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   # using GCC
-    add_compile_options(-Wall -O3 -Wextra -pedantic -Werror -fsanitize=address -Wshadow-compatible-local)
+    add_compile_options(-Wall -O3 -Wextra -pedantic -Werror -fsanitize=address -Wshadow-uncaptured-local)
 elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   # using Clang
     add_compile_options(-Wall -O3 -Wextra -pedantic -Werror -fsanitize=address -Wshadow-uncaptured-local)
