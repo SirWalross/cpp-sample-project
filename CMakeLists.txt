@@ -1,17 +1,20 @@
 cmake_minimum_required(VERSION 3.14)
+project(main CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
 
 # compiler flags
-if (MSVC)
-    # msvc flags
+if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  # using Visual Studio C++
     add_compile_options(/W4 /O2 /WX /fsanitize=address)
-else()
-    # gcc/clang flags
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  # using GCC
     add_compile_options(-Wall -O3 -Wextra -pedantic -Werror -fsanitize=address -Wshadow-compatible-local)
+elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  # using Clang
+    add_compile_options(-Wall -O3 -Wextra -pedantic -Werror -fsanitize=address -Wshadow-uncaptured-local)
 endif()
 
-project(main)
 
 add_executable(main main.cpp)
 
